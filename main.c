@@ -137,6 +137,7 @@ int main() {
                 choice = getchar();
                 if(choice=='a') {
                     {
+
                         foodOrdered = 1;
                         printf ("Order confirmed! Thank you for buying from us, %s \n", Username);
                     }
