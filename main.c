@@ -128,7 +128,7 @@ int main() {
                 printf("Drinks:\n");
                 printf("--- %s (%.2f)\n", drinks[drinkChoice], pricesOfDrinks[drinkChoice]);
                 printf("Cutlery %s (%.2f)\n", wantCutlery[cutleryChoice]);
-                printf ("Additional info: %s", AdditionalInfo);
+                printf ("Additional info: %s\n", AdditionalInfo);
 
                 printf("Payment amount: %.2f\n", pricesOfFood[foodChoice][typeChoice] + pricesOfDrinks[drinkChoice] );
                 printf("-------------\n");
