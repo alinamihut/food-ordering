@@ -13,22 +13,22 @@ int main() {
             {"Tuna Salad", "Greek Salad", "Chicken Salad", "Cobb"}
     };
 
-    int pricesOfFood[4][4] = {
+    double pricesOfFood[3][4] = {
             {21, 23, 19},
             {23, 21},
             {23, 22, 19, 21}};
     char drinks[][20] = {"Coca-Colla", "Fanta", "Lipton", "Water", "No, thanks"};
-    int pricesOfDrinks[4][4] = {5,5,5,4};
+    double pricesOfDrinks[5] = {5,5,5,4};
 
 
-    char wantCutlery[][30] = {"Yes","No, thanks!"};
+    char wantCutlery[][12] = {"Yes","No, thanks!"};
 
 
     //user input
     char Username[20];
     char Password[20];
     int foodChoice, typeChoice, drinkChoice, choice, cutleryChoice;
-    char AdditionalInfo[20];
+    char AdditionalInfo[30];
 
     int state =0;
     int foodOrdered = 0;
@@ -84,7 +84,7 @@ int main() {
                 printf("Please choose a drink to go with your%s\n",meals[foodChoice]);
                 for(int i=0;i<noOfDrinks;i++) {
                     putchar('a'+i);
-                    printf(") %s\n",drinks[i]);
+                     printf(") %s (%.2f) \n",drinks[i], pricesOfDrinks[i]);
                 }
                 printf("%c) Go back\n",'a'+noOfDrinks);
                 choice = getchar();
@@ -117,17 +117,16 @@ int main() {
             case 5:{
                 printf("Any additional info?\n");
                 gets(AdditionalInfo);
-                gets(AdditionalInfo);
             }
             case 6:{
                 printf("This is your order:\n");
                 printf("-------------\n");
                 printf("Name: %s\n", Username);
                 printf("Food Items:\n");
-                printf("--- %s (%.2f)\n", types[foodChoice], pricesOfFood[foodChoice]);
+                printf("--- %s (%.2f)\n", types[foodChoice], pricesOfFood[foodChoice][typeChoice]);
                 printf("Drinks:\n");
                 printf("--- %s (%.2f)\n", drinks[drinkChoice], pricesOfDrinks[drinkChoice]);
-                printf("Cutlery %s (%.2f)\n", wantCutlery[cutleryChoice]);
+                printf("Cutlery: %s \n", wantCutlery[cutleryChoice]);
                 printf ("Additional info: %s\n", AdditionalInfo);
 
                 printf("Payment amount: %.2f\n", pricesOfFood[foodChoice][typeChoice] + pricesOfDrinks[drinkChoice] );
@@ -137,6 +136,7 @@ int main() {
                 choice = getchar();
                 if(choice=='a') {
                     {
+
                         foodOrdered = 1;
                         printf ("Order confirmed! Thank you for buying from us, %s \n", Username);
                     }
