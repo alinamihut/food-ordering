@@ -1,10 +1,5 @@
 #include <stdio.h>
-
-#define MAX_MEAL_NAME 10
-#define MAX_TYPE_OF_FOOD_NAME 30
-#define MAX_DRINK_NAME 20
-#define MAX_CUTLERY_ANSWER_NAME 12
-#define MAX_ADDITIONAL_INFO 30
+#include "definitions.h"
 //
 void displayMealOptions (int noOfMeals, char meals[][MAX_MEAL_NAME]){
     printf("Please choose the food you feel like eating today\n");
@@ -14,6 +9,7 @@ void displayMealOptions (int noOfMeals, char meals[][MAX_MEAL_NAME]){
     }
     printf("%c) Go back\n",'a'+noOfMeals);
 }
+
 void displayTypesOfMealsOptions (int noOfMealTypes, char meals[], char types[][MAX_TYPE_OF_FOOD_NAME], double pricesOfFood[] ){
     printf("Please choose the type of %s\n",meals);
     for(int i=0;i<noOfMealTypes;i++) {
@@ -22,6 +18,7 @@ void displayTypesOfMealsOptions (int noOfMealTypes, char meals[], char types[][M
     }
     printf("%c) Go back\n",'a'+noOfMealTypes);
 }
+
 void displayTypesOfDrinks (char meals[], int noOfDrinks, char drinks[][MAX_DRINK_NAME], double pricesOfDrinks[]) {
     printf("Please choose a drink to go with your %s\n", meals);
     for (int i = 0; i < noOfDrinks; i++) {

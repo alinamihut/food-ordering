@@ -1,10 +1,7 @@
 #include <stdio.h>
+#include "definitions.h"
 //
-#define MAX_MEAL_NAME 10
-#define MAX_TYPE_OF_FOOD_NAME 30
-#define MAX_DRINK_NAME 20
-#define MAX_CUTLERY_ANSWER_NAME 12
-#define MAX_ADDITIONAL_INFO 30
+
 int getChoiceIndex (int noOfChoices, int *state) {
     int choiceIndex;
     char choice = getchar();
