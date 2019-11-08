@@ -17,12 +17,17 @@ int main() {
     int noOfMeals = 3,noOfDrinks = 5,noOfCutleryOptions=2;;
     char meals[][10] = {"Pizza","Pasta","Salad"};
     int noOfMealTypes[] = {3,2,4};
-    char types[][4][30] = {{"Pizza Carbonara", "Pizza Diavola", "Pizza Marguerita"}, {"Chicken Alfredo", "Mac&cheese"}, {"Tuna Salad", "Greek Salad", "Chicken Salad", "Cobb"} };
-    double pricesOfFood[3][4] = { {21, 23, 19}, {23, 21}, {23, 22, 19, 21}}, pricesOfDrinks[5] = {5,5,5,4};
+    char types[][4][30] = {{"Pizza Carbonara", "Pizza Diavola", "Pizza Marguerita"},
+                           {"Chicken Alfredo", "Mac&cheese"},
+                           {"Tuna Salad", "Greek Salad", "Chicken Salad", "Cobb"} };
+    double pricesOfFood[3][4] = { {21, 23, 19},
+                                  {23, 21},
+                                  {23, 22, 19, 21}};
+    double pricesOfDrinks[5] = {5,5,5,4};
     char drinks[][20] = {"Coca-Colla", "Fanta", "Lipton", "Water", "No, thanks"};
     char wantCutlery[][12] = {"Yes","No, thanks!"};
-    char Username[20], Password[20], AdditionalInfo[30];
-    int foodChoice, typeChoice, drinkChoice, choice, cutleryChoice;
+    char Username[20], Password[20], additionalInfo[30];
+    int foodChoice, typeChoice, drinkChoice, cutleryChoice;
     int foodOrdered = 0;
     int state =0;
     printf("Welcome to food thingies!\n");
@@ -55,12 +60,12 @@ int main() {
             }
             case 5:{
                 printf("Any additional info?\n");
-                gets(AdditionalInfo);
+                gets(additionalInfo);
                 state++;
             }
             case 6: {
                 displayOrderData(Username, types[foodChoice], pricesOfFood[foodChoice][typeChoice], drinks[drinkChoice],pricesOfDrinks[drinkChoice], wantCutlery[cutleryChoice]);
-                if (strlen(AdditionalInfo) != 0) printf("Additional info: %s \n", AdditionalInfo);
+                if (strlen(additionalInfo) != 0) printf("Additional info: %s \n", (additionalInfo));
                 printf("-------------\n");
                 getConfirmation(&state, &foodOrdered);
                 if (foodOrdered == 1) printf("Order confirmed! Thank you for buying from us, %s \n", Username);
