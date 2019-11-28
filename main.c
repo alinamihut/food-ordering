@@ -137,7 +137,6 @@ int main() {
                     }
                     }
 
-
                 printf("Welcome to food thingies!\n");
                 inputPersonalData (Username ,Password);
                 state++;
