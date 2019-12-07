@@ -6,5 +6,5 @@
 #define FOOD_ORDERING_BUYERDATA_H
 
 void inputPersonalData (char Username[], char Password[] );
-void displayOrderData (char Username[], char ***specificFoods, double **pricesOfFood,char **drinks, double *pricesOfDrinks, char  wantCutlery[][MAX_CUTLERY_ANSWER_NAME]);
+void displayOrderData (char Username[], char ***specificFoods, double pricesOfFood,char *drinks, double pricesOfDrinks, char  wantCutlery[][MAX_CUTLERY_ANSWER_NAME]);
 #endif //FOOD_ORDERING_BUYERDATA_H

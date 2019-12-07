@@ -46,7 +46,16 @@ int main() {
     int noOfDrinks;
     char ** drinks;
     double *pricesOfDrinks;
+/*
+    gets(lineOfFood);
+    token=strtok(lineOfFood, "-");
+    for (int i=0;i<noOfDrinks;i++)
+    {
 
+        drinks[i]=(char*) malloc (MAX_DRINK_NAME* sizeof(char));
+        strcpy (drinks[i], token);
+
+    } */
 
 
     while(!foodOrdered){
@@ -128,6 +137,7 @@ int main() {
                     }
                     else
                     {
+                        //pricesOfDrinks[i] = (double *)malloc(noOfDrinks * sizeof(double));
                         pricesOfDrinks[i]=atof(token);
                         printf("%.2lf \n", pricesOfDrinks[i]);
 
@@ -136,6 +146,7 @@ int main() {
                         token=strtok(NULL, delimDrinks);
                     }
                     }
+
 
                 printf("Welcome to food thingies!\n");
                 inputPersonalData (Username ,Password);
