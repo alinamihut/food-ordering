@@ -10,7 +10,7 @@ void displayMealOptions (int noOfFoodTypes, char **foodTypes){
     printf("%c) Go back\n",'a'+ noOfFoodTypes);
 }
 
-void displayTypesOfMealsOptions (int noOfSpecificFoods, char *foodTypes, char **specificFoods, double *pricesOfFood ){
+void displayTypesOfMealsOptions (int noOfSpecificFoods, char *foodTypes, char **specificFoods, double *pricesOfFood){
     printf("Please choose the type of %s\n",foodTypes);
     for(int i=0;i<noOfSpecificFoods;i++) {
         putchar('a'+i);
