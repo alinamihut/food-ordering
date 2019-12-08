@@ -3,7 +3,7 @@
 #include "definitions.h"
 // Created by Alina Mihut on 11/6/19.
 
-void inputPersonalData (char Username[], char Password[] ){
+void inputPersonalData (char Username[], char Password[]){
     printf("Please sign in to continue!\n");
     printf("---Username:\n");
     gets(Username);
