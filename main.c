@@ -124,17 +124,18 @@ int main() {
             // no of specific foods
             const char delim2[2]=":";
             token = strtok(NULL,delim2);
-            specificFoods[i] = (char **) malloc(noOfSpecificFoods[i] * sizeof(char *));
             noOfSpecificFoods[i] = atoi(token);
+            specificFoods[i] = (char **) malloc(noOfSpecificFoods[i] * sizeof(char *));
+            pricesOfFood[i] = (double *) malloc(noOfSpecificFoods[i] * sizeof(double));
             strcpy(lineCopy[i],token+2);
             token = strtok(lineCopy[i], "(");
             j=0;
+            for (int j=0;j<noOfSpecificFoods[i];j++)
+                specificFoods[i][j] = (char *) malloc(MAX_TYPE_OF_FOOD_NAME * sizeof(char));
             while (token!=NULL){
                 token=strtok(NULL,"-"); //specific foods;
-                specificFoods[i][j] = (char *) malloc(MAX_TYPE_OF_FOOD_NAME * sizeof(char));
                 strcpy(specificFoods[i][j], token);
                 token=strtok(NULL,")"); //price of food;
-                pricesOfFood[i] = (double *) malloc(noOfSpecificFoods[i] * sizeof(double));
                 sscanf(token, "%lf", &pricesOfFood[i][j]);
                 j++;
                 token = strtok(NULL, "(");
@@ -157,7 +158,6 @@ int main() {
         gets(lineOfDrinks);
         drinks = (char **) malloc(noOfDrinks * sizeof(char *));
         pricesOfDrinks = (double *) malloc(noOfDrinks * sizeof(double));
-        
             for(int i=0;i<noOfDrinks;i++)
                 drinks[i] = (char *) malloc(MAX_DRINK_NAME * sizeof(char));
             appendCharAtBeginning(lineOfDrinks,' ');
@@ -167,7 +167,7 @@ int main() {
                 token= strtok(NULL, "-");
                 strcpy (drinks[i], token);
                 token = strtok(NULL, ")");
-                sscanf(token, "%lf", pricesOfDrinks[i]);
+                sscanf(token, "%lf", &pricesOfDrinks[i]);
                 i++;
                 token = strtok(NULL, "(");
             }
@@ -189,7 +189,7 @@ int main() {
             case 1: {
 
                 displayMealOptions (noOfFoodTypes, foodTypes);
-                foodChoice= getChoiceIndex (noOfFoodTypes, &state);
+                foodChoice = getChoiceIndex (noOfFoodTypes, &state);
                 break;
             }
 
@@ -239,7 +239,6 @@ int getConfirmation (int *state, int *foodOrdered)
 }
 
 void appendCharAtBeginning(char * str, char c) {
-    // +1 to include string terminator
     int len = strlen(str)+1;
     memmove(str+1,str,len);
     str[0] = c;
