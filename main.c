@@ -4,8 +4,7 @@
 #include "buyerdata.h"
 #include "display_options.h"
 #include "customer_answers.h"
-#define LOAD_DATA	"Please load the data"
-#define LINE_lENGTH 500
+
 int getConfirmation (int *state,  int *foodOrdered);
 void appendCharAtBeginning(char * str, char c);
 FILE *foodOrderingFile;
