@@ -8,10 +8,10 @@
 #define LINE_lENGTH 500
 int getConfirmation (int *state,  int *foodOrdered);
 void appendCharAtBeginning(char * str, char c);
-FILE *fptr;
+FILE *foodOrderingFile;
 
 int main() {
-    fptr = fopen("/Users/alinamihut/Computer programming/food-ordering/data.txt","r");
+
 /*
   int noOfFoodTypes=3,
    int noOfDrinks = 5;
@@ -36,29 +36,24 @@ int main() {
     char **lineOfFood, **lineCopy;
     char *lineOfDrinks, *lineCopy2;
     char *token;
-    const char delimFood1[3]=": ", delimFood2[5]=":()-";
-    const char delimDrinks[7]="()-,";
     int noOfFoodTypes;
     char **foodTypes;
     char *** specificFoods;
     int * noOfSpecificFoods;
     double **pricesOfFood;
-    int isFoodType, isSpecificFood,j;
-    int drinkOrPrice;
+    int j;
     int noOfDrinks;
     char ** drinks;
     double *pricesOfDrinks;
+    foodOrderingFile = fopen("/Users/alinamihut/Computer programming/food-ordering/data.txt","r");
 
-/*
-    if(fptr) {
-        //printf ("%s \n", LOAD_DATA);
-        fscanf(fptr, "%d", &noOfFoodTypes);
-        getchar();
-
-    else {*/
+    if(foodOrderingFile==NULL) {
+        printf("%s\n", LOAD_DATA);
+        foodOrderingFile = stdin;
+    }
         printf("%s \n", LOAD_DATA);
-        scanf("%d", &noOfFoodTypes);
-        getchar();
+        fscanf(foodOrderingFile, "%d", &noOfFoodTypes);
+        fgetc(foodOrderingFile);
         foodTypes = (char **) malloc(noOfFoodTypes * sizeof(char *));
         specificFoods = (char ***) malloc(noOfFoodTypes * sizeof(char **));
         noOfSpecificFoods = (int *) malloc(noOfFoodTypes * sizeof(int));
@@ -66,113 +61,65 @@ int main() {
         lineOfFood = (char **) malloc(noOfFoodTypes * sizeof(char *));
         lineCopy = (char **) malloc(noOfFoodTypes * sizeof(char *));
         for (int i = 0; i < noOfFoodTypes; i++) {
-            /*lineOfFood[i] = (char *) malloc(LINE_lENGTH * sizeof(char));
-            gets(lineOfFood[i]);
-            isFoodType = 0;
-            isSpecificFood = 0;
-            foodTypes[i] = (char *) malloc(MAX_FOOD_TYPE_NAME * sizeof(char));
-            token = strtok(lineOfFood[i], delimFood1);
-            noOfSpecificFoods[i] = 0;
-            j = 0;
-
-            for (int j=0;j<strlen(foodTypes[i]);j++)
-                for (int k=0;k<strlen (lineOfFood[i]); k++) {
-                    lineOfFood[k] = lineOfFood[k + 1];
-                }
-            token=strtok(lineOfFood, delimFood);
-
-            while (token != NULL) {
-
-                if (isFoodType == 0) {
-                    strcpy (foodTypes[i], token);
-                    isFoodType = 1;
-                    // printf ("%s \n", foodTypes[i]);
-                } else {
-                    if (noOfSpecificFoods[i] == 0) {
-                        noOfSpecificFoods[i] = atof(token);
-                        specificFoods[i] = (char **) malloc(noOfSpecificFoods[i] * sizeof(char *));
-                    } else {
-                        if (isSpecificFood == 0) {
-                            //specificFoods[i][noOfSpecificFoods[i]] = (char *) malloc(MAX_TYPE_OF_FOOD_NAME * sizeof(char));
-                            specificFoods[i][j] = (char *) malloc(MAX_TYPE_OF_FOOD_NAME * sizeof(char));
-                            //strcpy(specificFoods[i][noOfSpecificFoods[i]],token); //doesn't work for foods with spaces
-                            strcpy(specificFoods[i][j], token);
-                            isSpecificFood = 1;
-                            //printf("%s \n", specificFoods[i][noOfSpecificFoods[i]]);
-                            // printf("%s \n", specificFoods[i][j]);
-                        } else {
-                            pricesOfFood[i] = (double *) malloc(noOfSpecificFoods[i] * sizeof(double));
-                            //pricesOfFood[i][noOfSpecificFoods[i]] = atof(token);
-                            pricesOfFood[i][j] = atof(token);
-                            isSpecificFood = 0;
-                            // printf("%.2lf \n", pricesOfFood[i][noOfSpecificFoods[i]]);
-                            // printf("%.2lf \n", pricesOfFood[i][j]);
-                            j++;
-
-                        }
-                    }
-                }
-                token = strtok(NULL, delimFood);
-            }*/
             lineOfFood[i] = (char *) malloc(LINE_lENGTH * sizeof(char));
             lineCopy[i] = (char *) malloc(LINE_lENGTH * sizeof(char));
-            gets(lineOfFood[i]);
-            const char delim[2]=" ";
-            token = strtok(lineOfFood[i],delim); //type of food
+            fgets(lineOfFood[i], LINE_lENGTH, foodOrderingFile);
+            lineOfFood[i][strlen(lineOfFood[i])-1]='\0';
+            const char delim[2] = " ";
+            token = strtok(lineOfFood[i], delim); //type of food
             foodTypes[i] = (char *) malloc(MAX_FOOD_TYPE_NAME * sizeof(char));
-            strcpy (foodTypes[i], token);
-            // no of specific foods
-            const char delim2[2]=":";
-            token = strtok(NULL,delim2);
+            strcpy (foodTypes[i], token);// no of specific foods
+            const char delim2[2] = ":";
+            token = strtok(NULL, delim2);
             noOfSpecificFoods[i] = atoi(token);
             specificFoods[i] = (char **) malloc(noOfSpecificFoods[i] * sizeof(char *));
             pricesOfFood[i] = (double *) malloc(noOfSpecificFoods[i] * sizeof(double));
-            strcpy(lineCopy[i],token+2);
+            strcpy(lineCopy[i], token + 2);
             token = strtok(lineCopy[i], "(");
-            j=0;
-            for (int j=0;j<noOfSpecificFoods[i];j++)
+            j = 0;
+            for (int j = 0; j < noOfSpecificFoods[i]; j++)
                 specificFoods[i][j] = (char *) malloc(MAX_TYPE_OF_FOOD_NAME * sizeof(char));
-            while (token!=NULL){
-                token=strtok(NULL,"-"); //specific foods;
+            while (token != NULL) {
+                token = strtok(NULL, "-"); //specific foods;
                 strcpy(specificFoods[i][j], token);
-                token=strtok(NULL,")"); //price of food;
+                token = strtok(NULL, ")"); //price of food;
                 sscanf(token, "%lf", &pricesOfFood[i][j]);
                 j++;
                 token = strtok(NULL, "(");
             }
         }
-        for (int i=0;i<noOfFoodTypes;i++)
-        {
+        for (int i = 0; i < noOfFoodTypes; i++) {
             printf(" %d \n", noOfSpecificFoods[i]);
         }
-        for(int i=0;i<noOfFoodTypes;i++)
-            for (int j=0;j<noOfSpecificFoods[i];j++)
-        {
-            printf(" mancare %s \n", specificFoods[i][j]);
-            printf ("pret %.2lf \n", pricesOfFood[i][j]);
-        }
-
-        scanf("%d", &noOfDrinks);
-        getchar();
-        lineOfDrinks = (char *) malloc(LINE_lENGTH * sizeof(char));
-        gets(lineOfDrinks);
-        drinks = (char **) malloc(noOfDrinks * sizeof(char *));
-        pricesOfDrinks = (double *) malloc(noOfDrinks * sizeof(double));
-            for(int i=0;i<noOfDrinks;i++)
-                drinks[i] = (char *) malloc(MAX_DRINK_NAME * sizeof(char));
-            appendCharAtBeginning(lineOfDrinks,' ');
-            token = strtok(lineOfDrinks,"(" );
-            int i=0;
-            while (token != NULL) {
-                token= strtok(NULL, "-");
-                strcpy (drinks[i], token);
-                token = strtok(NULL, ")");
-                sscanf(token, "%lf", &pricesOfDrinks[i]);
-                i++;
-                token = strtok(NULL, "(");
+        for (int i = 0; i < noOfFoodTypes; i++)
+            for (int j = 0; j < noOfSpecificFoods[i]; j++) {
+                printf(" mancare %s \n", specificFoods[i][j]);
+                printf("pret %.2lf \n", pricesOfFood[i][j]);
             }
 
-        for(int i=0;i<noOfDrinks;i++) {
+        fscanf(foodOrderingFile, "%d", &noOfDrinks);
+        fgetc(foodOrderingFile);
+        lineOfDrinks = (char *) malloc(LINE_lENGTH * sizeof(char));
+        fgets(lineOfDrinks, LINE_lENGTH, foodOrderingFile);
+        lineOfDrinks[strlen(lineOfDrinks)-1]='\0';
+        drinks = (char **) malloc(noOfDrinks * sizeof(char *));
+        pricesOfDrinks = (double *) malloc(noOfDrinks * sizeof(double));
+        for (int i = 0; i < noOfDrinks; i++)
+            drinks[i] = (char *) malloc(MAX_DRINK_NAME * sizeof(char));
+        appendCharAtBeginning(lineOfDrinks, ' ');
+        token = strtok(lineOfDrinks, "(");
+        int i = 0;
+        while (token != NULL) {
+            token = strtok(NULL, "-");
+            strcpy (drinks[i], token);
+            token = strtok(NULL, ")");
+            sscanf(token, "%lf", &pricesOfDrinks[i]);
+            i++;
+            token = strtok(NULL, "(");
+        }
+
+
+        for(int i=0;i< noOfDrinks;i++) {
             printf("drink %s \n", drinks[i]);
             printf("price %.0lf \n", pricesOfDrinks[i]);
         }
@@ -194,6 +141,7 @@ int main() {
             }
 
             case 2: {
+
                 displayTypesOfMealsOptions(noOfSpecificFoods[foodChoice], foodTypes[foodChoice], specificFoods[foodChoice], pricesOfFood[foodChoice]);
                 typeChoice = getChoiceIndex(noOfSpecificFoods[foodChoice], &state);
                 break;
@@ -214,7 +162,7 @@ int main() {
                 state++;
             }
             case 6: {
-                displayOrderData(Username, &specificFoods[foodChoice], pricesOfFood[foodChoice][typeChoice], drinks[drinkChoice], pricesOfDrinks[drinkChoice], &wantCutlery[cutleryChoice]);
+                displayOrderData(Username, specificFoods[foodChoice], pricesOfFood[foodChoice][typeChoice], drinks[drinkChoice], pricesOfDrinks[drinkChoice], &wantCutlery[cutleryChoice]);
                 if (strlen(additionalInfo) != 0) printf("Additional info: %s \n", (additionalInfo));
                 printf("-------------\n");
                 getConfirmation(&state, &foodOrdered);
@@ -224,6 +172,24 @@ int main() {
                 }
             }
         }
+    for( int i=0;i< noOfFoodTypes;i++) {
+        for(int j=0;j<noOfSpecificFoods[i];j++) {
+            free(specificFoods[i][j]);
+        }
+        free(specificFoods[i]);
+        free(foodTypes[i]);
+    }
+    free(foodTypes);
+    free (noOfSpecificFoods);
+    free (specificFoods);
+    free(pricesOfFood);
+    for(int i =0;i<noOfDrinks;i++) {
+        free(drinks[i]);
+
+    }
+    free (drinks);
+    free (pricesOfDrinks);
+    fclose(foodOrderingFile);
     return 0;
 }
 
@@ -243,32 +209,3 @@ void appendCharAtBeginning(char * str, char c) {
     memmove(str+1,str,len);
     str[0] = c;
 }
-/*token = strtok(lineOfDrinks, delimDrinks);
-            drinkOrPrice = 1;
-            while (token != NULL) {
-                if (drinkOrPrice % 2 == 1) {
-                    drinks[i] = (char *) malloc(MAX_DRINK_NAME * sizeof(char));
-                    strcpy (drinks[i], token);
-                    printf("%s \n", drinks[i]);
-                } else {
-                    //pricesOfDrinks[i] = (double *)malloc(noOfDrinks * sizeof(double));
-                    pricesOfDrinks[i] = atof(token);
-                    printf("%.2lf \n", pricesOfDrinks[i]);
-
-                }
-                drinkOrPrice++;
-                token = strtok(NULL, delimDrinks);
-            }
-             */
-
-/*if (drinkOrPrice % 2 == 1) {
-                drinks[i] = (char *) malloc(MAX_DRINK_NAME * sizeof(char));
-                //token[strlen(token)-1]='\0';
-                strcpy (drinks[i], token);
-            } else {
-                strcpy(token,token+1);
-               // token[strlen(token)-1]='\0';
-                pricesOfDrinks[i] = atof(token);
-
-            }
-            drinkOrPrice++;*/
