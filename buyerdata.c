@@ -11,7 +11,7 @@ void inputPersonalData (char Username[], char Password[]){
     gets(Password);
 }
 
-void displayOrderData (char Username[], char ***specificFoods, double pricesOfFood,char **drinks, double pricesOfDrinks, char  wantCutlery[][MAX_CUTLERY_ANSWER_NAME]){
+void displayOrderData (char Username[], char *specificFoods, double pricesOfFood,char *drinks, double pricesOfDrinks, char  wantCutlery[][MAX_CUTLERY_ANSWER_NAME]){
     printf("This is your order:\n");
     printf("-------------\n");
     printf("Name: %s\n", Username);

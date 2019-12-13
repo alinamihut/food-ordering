@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include "definitions.h"
-/
+#include <stdlib.h>
+#include <string.h>
 void displayMealOptions (int noOfFoodTypes, char **foodTypes){
     printf("Please choose the food you feel like eating today\n");
     for(int i=0;i< noOfFoodTypes;i++) {
         putchar('a'+i);
-        printf(") %s\n",foodTypes[i]);
+        printf(") %s \n",foodTypes[i]);
     }
     printf("%c) Go back\n",'a'+ noOfFoodTypes);
 }
@@ -13,8 +13,8 @@ void displayMealOptions (int noOfFoodTypes, char **foodTypes){
 void displayTypesOfMealsOptions (int noOfSpecificFoods, char *foodTypes, char **specificFoods, double *pricesOfFood){
     printf("Please choose the type of %s\n",foodTypes);
     for(int i=0;i<noOfSpecificFoods;i++) {
-        putchar('a'+i);
-        printf(") %s (%.2f)\n", specificFoods[i], pricesOfFood[i]);
+        putchar('a' + i);
+        printf(") %s (%.2f)\n", *specificFoods, *pricesOfFood);
     }
     printf("%c) Go back\n",'a'+noOfSpecificFoods);
 }
