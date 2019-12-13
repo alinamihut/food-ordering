@@ -7,5 +7,5 @@
 
 void displayMealOptions (int noOfFoodTypes, char **foodTypes);
 void displayTypesOfMealsOptions (int noOfSpecificFoods, char *foodTypes, char **specificFoods, double *pricesOfFood );
-void displayTypesOfDrinks (char *foodTypes, int noOfDrinks, char **drinks, double *pricesOfDrinks) ;
+void displayTypesOfDrinks (char *foodTypes, int noOfDrinks, char **drinks, double *pricesOfDrinks);
 #endif //FOOD_ORDERING_DISPLAY_OPTIONS_H

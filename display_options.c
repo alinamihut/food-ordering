@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-void displayMealOptions (int noOfFoodTypes, char **foodTypes){
+void displayMealOptions (int noOfFoodTypes, char **foodTypes) {
     printf("Please choose the food you feel like eating today\n");
     for(int i=0;i< noOfFoodTypes;i++) {
         putchar('a'+i);
