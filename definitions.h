@@ -10,5 +10,6 @@
 #define MAX_DRINK_NAME 20
 #define MAX_CUTLERY_ANSWER_NAME 12
 #define MAX_ADDITIONAL_INFO 30
-
+#define LOAD_DATA	"Please load the data"
+#define LINE_lENGTH 500
 #endif //FOOD_ORDERING_DEFINITIONS_H
