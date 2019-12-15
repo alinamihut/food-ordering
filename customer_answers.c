@@ -22,6 +22,7 @@ void optionOfCutlery (char wantCutlery[][MAX_CUTLERY_ANSWER_NAME]){
         printf(") %s\n",wantCutlery[i]);
     }
     printf("%c) Go back\n",'a'+2);
+
 }
 // Created by Alina Mihut on 11/6/19.
 //
