@@ -11,21 +11,6 @@ FILE *foodOrderingFile;
 
 int main() {
 
-/*
-  int noOfFoodTypes=3,
-   int noOfDrinks = 5;
-
-   char foodTypes[][10] = {"Pizza", "Pasta", "Salad"};
-    int noOfSpecificFoods[] = {3, 2, 4};
-
-    char specificFoods[][4][30] = {{"Pizza Carbonara", "Pizza Diavola", "Pizza Marguerita"},
-                                 {"Chicken Alfredo", "Mac&cheese"},
-                                        {"Tuna Salad",   "Greek Salad",   "Chicken Salad", "Cobb"} };
-    double pricesOfFood[3][4] = { {21, 23, 19},
-                                {23, 21},
-                               {23, 22, 19, 21}};double pricesOfDrinks[5] = {5,5,5,4};
-   char drinks[][20] = {"Coca-Colla", "Fanta", "Lipton", "Water", "No, thanks"};
-*/
     int noOfCutleryOptions=2;
     char wantCutlery[][12] = {"Yes","No, thanks!"};
     char Username[20], Password[20], additionalInfo[30];
@@ -44,7 +29,7 @@ int main() {
     int noOfDrinks;
     char ** drinks;
     double *pricesOfDrinks;
-    foodOrderingFile = fopen("/Users/alinamihut/Computer programming/food-ordering/data.txt","r");
+    foodOrderingFile = fopen("../data.txt","r");
 
     if(foodOrderingFile==NULL) {
         printf("%s\n", LOAD_DATA);
@@ -87,14 +72,6 @@ int main() {
                 token = strtok(NULL, "(");
             }
         }
-        for (int i = 0; i < noOfFoodTypes; i++) {
-            printf(" %d \n", noOfSpecificFoods[i]);
-        }
-        for (int i = 0; i < noOfFoodTypes; i++)
-            for (int j = 0; j < noOfSpecificFoods[i]; j++) {
-                printf(" mancare %s \n", specificFoods[i][j]);
-                printf("pret %.2lf \n", pricesOfFood[i][j]);
-            }
 
         fscanf(foodOrderingFile, "%d", &noOfDrinks);
         fgetc(foodOrderingFile);
@@ -115,12 +92,6 @@ int main() {
             sscanf(token, "%lf", &pricesOfDrinks[i]);
             i++;
             token = strtok(NULL, "(");
-        }
-
-
-        for(int i=0;i< noOfDrinks;i++) {
-            printf("drink %s \n", drinks[i]);
-            printf("price %.0lf \n", pricesOfDrinks[i]);
         }
 
     while(!foodOrdered){
@@ -161,7 +132,7 @@ int main() {
                 state++;
             }
             case 6: {
-                displayOrderData(Username, specificFoods[foodChoice], pricesOfFood[foodChoice][typeChoice], drinks[drinkChoice], pricesOfDrinks[drinkChoice], &wantCutlery[cutleryChoice]);
+                displayOrderData(Username, specificFoods[foodChoice][typeChoice], pricesOfFood[foodChoice][typeChoice], drinks[drinkChoice], pricesOfDrinks[drinkChoice], &wantCutlery[cutleryChoice]);
                 if (strlen(additionalInfo) != 0) printf("Additional info: %s \n", (additionalInfo));
                 printf("-------------\n");
                 getConfirmation(&state, &foodOrdered);
