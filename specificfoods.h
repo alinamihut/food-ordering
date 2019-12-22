@@ -1,3 +1,5 @@
+#ifndef FOOD_ORDERING_SPECIFICFOODS_H
+#define FOOD_ORDERING_SPECIFICFOODS_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
