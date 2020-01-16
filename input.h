@@ -6,5 +6,6 @@
 #define FOOD_ORDERING_CUSTOMER_ANSWERS_H
 
 int getChoiceIndex (int noOfChoices, int *state);
-void optionOfCutlery (char wantCutlery[][MAX_CUTLERY_ANSWER_NAME]) ;
+void optionOfCutlery (char wantCutlery[][MAX_CUTLERY_ANSWER_NAME]);
+void appendCharAtBeginning(char * str, char c);
 #endif //FOOD_ORDERING_CUSTOMER_ANSWERS_H
