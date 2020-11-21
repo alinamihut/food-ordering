@@ -13,13 +13,6 @@ int main() {
 
     int noOfCutleryOptions = 2;
     char wantCutlery[][12] = {"Yes", "No, thanks!"};
-    //char Username[20], Password[20],
-    // char **foodTypes;
-    //char ***specificFoods;
-    //int *noOfSpecificFoods;
-    //double **pricesOfFood;
-    // char **drinks;
-    //    //double *pricesOfDrinks;
     char additionalInfo[30];
     int foodChoice, typeChoice, drinkChoice, cutleryChoice;
     int foodOrdered = 0;
@@ -43,10 +36,7 @@ int main() {
     printf("%s \n", LOAD_DATA);
    fscanf(foodOrderingFile, "%d", &noOfFoodTypes);
     fgetc(foodOrderingFile);
-    //foodTypes = (char **) malloc(noOfFoodTypes * sizeof(char *));
-   //specificFoods = (char ***) malloc(noOfFoodTypes * sizeof(char **));
-   // noOfSpecificFoods = (int *) malloc(noOfFoodTypes * sizeof(int));
-   // pricesOfFood = (double **) malloc(noOfFoodTypes * sizeof(double *));
+
     lineOfFood = (char **) malloc(noOfFoodTypes * sizeof(char *));
     lineCopy = (char **) malloc(noOfFoodTypes * sizeof(char *));
     t = (foodType*) malloc (noOfFoodTypes * sizeof(foodType));
@@ -54,7 +44,6 @@ int main() {
         t[i]= createFoodType();
         lineOfFood[i] = (char *) malloc(LINE_lENGTH * sizeof(char));
         lineCopy[i] = (char *) malloc(LINE_lENGTH * sizeof(char));
-      // foodTypes[i] = (char *) malloc(MAX_FOOD_TYPE_NAME * sizeof(char));
         fgets(lineOfFood[i], LINE_lENGTH, foodOrderingFile);
         lineOfFood[i][strlen(lineOfFood[i])-1]='\0';
         const char delim[2] = " ";
@@ -63,8 +52,6 @@ int main() {
         const char delim2[2] = ":";
         token = strtok(NULL, delim2);
         t[i].noOfSpecificFoods = atoi(token);
-       // specificFoods[i] = (char **) malloc(noOfSpecificFoods[i] * sizeof(char *));
-        //pricesOfFood[i] = (double *) malloc(noOfSpecificFoods[i] * sizeof(double));
         strcpy(lineCopy[i], token + 2);
         token = strtok(lineCopy[i], "(");
         t[i].specificFoods=( specificFood *)malloc (t[i].noOfSpecificFoods *sizeof (specificFood));
@@ -86,8 +73,6 @@ int main() {
     lineOfDrinks = (char *) malloc(LINE_lENGTH * sizeof(char));
     fgets(lineOfDrinks, LINE_lENGTH, foodOrderingFile);
     lineOfDrinks[strlen(lineOfDrinks)-1]='\0';
-    //drinks = (char **) malloc(noOfDrinks * sizeof(char *));
-   // pricesOfDrinks = (double *) malloc(noOfDrinks * sizeof(double));
     d = (drink*) malloc (noOfDrinks* sizeof(drink));
     for (int i = 0; i < noOfDrinks; i++)
         //drinks[i] = (char *) malloc(MAX_DRINK_NAME * sizeof(char));
